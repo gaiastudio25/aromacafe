@@ -1,79 +1,72 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
-const menuItems = [
+const menuCategories = [
     {
-        name: 'Espresso Signature',
-        description: 'Rico, intenso y perfectamente balanceado. Nuestra mezcla de la casa tostada a la perfección.',
-        price: '$4.50',
-        image: '/espresso.jpg',
+        title: "Café de Especialidad",
+        items: [
+            { name: 'Espresso Signature', price: '$4.50', description: 'Rico, intenso y perfectamente balanceado.' },
+            { name: 'Latte Artesanal', price: '$5.50', description: 'Espuma sedosa y arte latte delicado.' },
+            { name: 'Cold Brew', price: '$5.00', description: 'Infusión en frío por 24 horas.' },
+            { name: 'Flat White', price: '$4.75', description: 'Doble shot con leche texturizada fina.' }
+        ]
     },
     {
-        name: 'Latte Artesanal',
-        description: 'Espuma sedosa se encuentra con nuestro espresso signature, coronado con delicado arte latte.',
-        price: '$5.50',
-        image: '/latte.jpg',
-    },
-    {
-        name: 'Croissant de Mantequilla',
-        description: 'Capas hojaldradas y mantecosas horneadas frescas cada día. Perfecto con tu café matutino.',
-        price: '$4.00',
-        image: '/croissant.jpg',
-    },
+        title: "Pastelería Fina",
+        items: [
+            { name: 'Croissant de Mantequilla', price: '$4.00', description: 'Capas hojaldradas horneadas diariamente.' },
+            { name: 'Pain au Chocolat', price: '$4.50', description: 'Relleno de chocolate belga oscuro.' },
+            { name: 'Tarta de Almendras', price: '$5.50', description: 'Dulce y crujiente, perfecta para acompañar.' }
+        ]
+    }
 ];
 
 export default function Menu() {
     return (
-        <section id="menu" className="py-24 px-6 bg-[var(--soft-beige)]">
-            <div className="max-w-7xl mx-auto">
+        <section id="menu" className="py-24 md:py-32 px-6 bg-[var(--sand)]">
+            <div className="max-w-5xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                 >
-                    <h2 className="text-5xl md:text-6xl text-[var(--deep-brown)] mb-4">
+                    <span className="text-[var(--warm-gold)] text-sm tracking-[0.2em] uppercase font-medium block mb-4">
+                        Selección Curada
+                    </span>
+                    <h2 className="text-5xl md:text-6xl text-[var(--deep-brown)] font-serif mb-4">
                         Nuestro Menú
                     </h2>
-                    <p className="text-[var(--coffee-brown)] text-lg max-w-2xl mx-auto">
-                        Bebidas artesanales y pastelería fina, hechas con amor y precisión
-                    </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-3 gap-8">
-                    {menuItems.map((item, index) => (
+                <div className="grid md:grid-cols-2 gap-16 md:gap-24">
+                    {menuCategories.map((category, idx) => (
                         <motion.div
-                            key={item.name}
-                            initial={{ opacity: 0, y: 30 }}
+                            key={category.title}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            whileHover={{ y: -8 }}
-                            className="bg-[var(--cream)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                            transition={{ delay: idx * 0.2 }}
                         >
-                            <div className="relative h-64 grain-overlay">
-                                <Image
-                                    src={item.image}
-                                    alt={item.name}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            <div className="p-6">
-                                <div className="flex justify-between items-start mb-3">
-                                    <h3 className="text-2xl text-[var(--deep-brown)]">
-                                        {item.name}
-                                    </h3>
-                                    <span className="text-[var(--warm-gold)] font-semibold text-xl">
-                                        {item.price}
-                                    </span>
-                                </div>
-                                <p className="text-[var(--coffee-brown)] leading-relaxed">
-                                    {item.description}
-                                </p>
+                            <h3 className="text-2xl font-serif text-[var(--deep-brown)] mb-8 border-b border-[var(--deep-brown)]/10 pb-4">
+                                {category.title}
+                            </h3>
+                            <div className="space-y-8">
+                                {category.items.map((item) => (
+                                    <div key={item.name} className="group cursor-pointer">
+                                        <div className="flex justify-between items-baseline mb-2">
+                                            <h4 className="text-lg font-medium text-[var(--deep-brown)] group-hover:text-[var(--warm-gold)] transition-colors">
+                                                {item.name}
+                                            </h4>
+                                            <span className="text-[var(--deep-brown)]/60 font-serif text-lg">{item.price}</span>
+                                        </div>
+                                        <p className="text-sm text-[var(--deep-brown)]/50 font-light italic">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                ))}
                             </div>
                         </motion.div>
                     ))}
@@ -84,9 +77,9 @@ export default function Menu() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="text-center mt-12"
+                    className="text-center mt-20"
                 >
-                    <button className="px-8 py-4 bg-[var(--deep-brown)] text-[var(--cream)] rounded-full font-medium text-lg hover:bg-[var(--coffee-brown)] transition-colors">
+                    <button className="px-8 py-3 border border-[var(--deep-brown)] text-[var(--deep-brown)] hover:bg-[var(--deep-brown)] hover:text-[var(--cream)] transition-all duration-300 tracking-widest uppercase text-sm">
                         Ver Menú Completo
                     </button>
                 </motion.div>

@@ -1,65 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  /* Aromacafé Brand Colors */
-  --deep-brown: #4A2E1F;
-  --coffee-brown: #6B4A3A;
-  --soft-beige: #E8DCC5;
-  --cream: #F4EFE7;
+  /* Aromacafé Brand Colors - Sophisticated & Elegant */
+  --deep-brown: #2C1810;
+  /* Darker, richer coffee bean */
+  --coffee-brown: #4A3728;
+  /* Medium roast */
   --warm-gold: #D4AF37;
-  
+  /* Classic, muted gold */
+  --soft-gold: #E5D3B3;
+  /* Champagne gold for backgrounds */
+  --cream: #FDFBF7;
+  /* Soft, warm white */
+  --sand: #F5F0E6;
+  /* Slightly darker cream */
+  --charcoal: #1A1A1A;
+  /* High contrast text */
+  --gray-muted: #888888;
+  /* Secondary text */
+
   /* Semantic colors */
-  --background: #F4EFE7;
-  --foreground: #4A2E1F;
+  --background: var(--cream);
+  --foreground: var(--deep-brown);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-deep-brown: #4A2E1F;
-  --color-coffee-brown: #6B4A3A;
-  --color-soft-beige: #E8DCC5;
-  --color-cream: #F4EFE7;
-  --color-warm-gold: #D4AF37;
+  --color-deep-brown: var(--deep-brown);
+  --color-coffee-brown: var(--coffee-brown);
+  --color-warm-gold: var(--warm-gold);
+  --color-soft-gold: var(--soft-gold);
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-charcoal: var(--charcoal);
+  --color-gray-muted: var(--gray-muted);
+
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-sans: 'Inter', sans-serif;
 }
 
 * {
-  border-color: rgba(74, 46, 31, 0.1);
+  border-color: rgba(44, 24, 16, 0.1);
+}
+
+::selection {
+  background-color: var(--deep-brown);
+  color: var(--warm-gold);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 600;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Smooth scrolling setup for Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
 }
 
-/* Grain overlay utility */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Utilities */
+.text-balance {
+  text-wrap: balance;
+}
+
 .grain-overlay {
-  position: relative;
-}
-
-.grain-overlay::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
+  inset: 0;
   width: 100%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.03;
   pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
 }

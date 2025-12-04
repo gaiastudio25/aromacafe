@@ -10,9 +10,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Header />
-      <div id="hero">
-        <Hero />
-      </div>
+      <Hero />
       <About />
       <Menu />
       <Gallery />

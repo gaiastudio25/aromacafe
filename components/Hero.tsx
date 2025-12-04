@@ -6,17 +6,17 @@ import { ChevronDown } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden grain-overlay">
+    <section id="hero" className="relative h-screen w-full overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
           src="/hero-cafe.jpg"
           alt="Aromacafé - Artisanal Coffee Experience"
           fill
-          className="object-cover brightness-75"
+          className="object-cover brightness-[0.6]"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--deep-brown)]/40 via-transparent to-[var(--deep-brown)]/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60" />
       </div>
 
       {/* Content */}
@@ -26,33 +26,23 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          <h1 className="mb-6 text-6xl md:text-8xl lg:text-9xl text-[var(--cream)] tracking-tight">
+          <span className="block text-[var(--warm-gold)] text-sm md:text-base tracking-[0.3em] uppercase mb-4 font-medium">
+            Est. 2024
+          </span>
+          <h1 className="mb-6 text-6xl md:text-8xl lg:text-9xl text-[var(--cream)] font-serif tracking-tight">
             Aromacafé
           </h1>
-          <p className="mb-8 text-xl md:text-2xl text-[var(--soft-beige)] font-light max-w-2xl mx-auto">
+          <p className="mb-10 text-xl md:text-2xl text-[var(--soft-gold)] font-light max-w-2xl mx-auto leading-relaxed">
             Donde la artesanía se encuentra con el deleite sensorial
           </p>
+
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-[var(--warm-gold)] text-[var(--deep-brown)] rounded-full font-medium text-lg hover:bg-[var(--warm-gold)]/90 transition-colors"
+            className="px-8 py-4 border border-[var(--cream)] text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--deep-brown)] transition-all duration-300 uppercase tracking-widest text-sm"
           >
-            Explorar Nuestro Menú
+            Explorar Menú
           </motion.button>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 1 }}
-            className="mt-12 text-[var(--cream)]/90 font-light tracking-wide"
-          >
-            <p className="text-lg uppercase tracking-widest mb-2">Horarios</p>
-            <div className="flex flex-col items-center justify-center md:flex-row gap-4 md:gap-8 p-4 text-sm md:text-base">
-              <span>Lun - Vie: 7:00 AM - 7:00 PM</span>
-              <span className="hidden md:inline">|</span>
-              <span>Sáb - Dom: 8:00 AM - 8:00 PM</span>
-            </div>
-          </motion.div>
         </motion.div>
 
         {/* Scroll Indicator */}
@@ -65,8 +55,10 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
+            className="flex flex-col items-center gap-2"
           >
-            <ChevronDown className="w-8 h-8 text-[var(--cream)]" />
+            <span className="text-[var(--cream)]/60 text-[10px] uppercase tracking-widest">Scroll</span>
+            <ChevronDown className="w-6 h-6 text-[var(--cream)]" />
           </motion.div>
         </motion.div>
       </div>
