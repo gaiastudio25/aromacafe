@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -41,7 +42,9 @@ export default function Hero() {
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 border border-[var(--cream)] text-[var(--cream)] hover:bg-[var(--cream)] hover:text-[var(--deep-brown)] transition-all duration-300 uppercase tracking-widest text-sm"
           >
-            Explorar Menú
+            <Link href="#menu">
+              Explorar Menú
+            </Link>
           </motion.button>
         </motion.div>
 

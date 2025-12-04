@@ -72,7 +72,7 @@ export default function Menu() {
                     ))}
                 </div>
 
-                <motion.div
+                {/*<motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -82,7 +82,7 @@ export default function Menu() {
                     <button className="px-8 py-3 border border-[var(--deep-brown)] text-[var(--deep-brown)] hover:bg-[var(--deep-brown)] hover:text-[var(--cream)] transition-all duration-300 tracking-widest uppercase text-sm">
                         Ver Menú Completo
                     </button>
-                </motion.div>
+                </motion.div>*/}
             </div>
         </section>
     );
